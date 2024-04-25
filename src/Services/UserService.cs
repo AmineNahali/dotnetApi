@@ -29,4 +29,17 @@ public class UserService
 
         return user;
     }
+
+    public List<User> GetAllUsers()
+    {
+        var users = _context.Users.ToList();
+        if (users == null) return null;
+        return users;
+    }
+
+    public User GetByUsername(string username)
+    {
+        var user = _context.Users.FirstOrDefault(user => user.Username == username);
+        return (user == null)? null : user;
+    }
 }

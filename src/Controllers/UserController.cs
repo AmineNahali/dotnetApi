@@ -44,8 +44,22 @@ public class UsersController : ControllerBase
 
     [Authorize]
     [HttpGet("hello")]
-    public async Task<IActionResult> Hello()
+    public IActionResult Hello()
     {
-        return Ok(new {message= "Hello :D you are authorized"});
+        return Ok(new { message = "Hello :D you are authorized" });
+    }
+
+    [Authorize]
+    [HttpGet("getAll")]
+    public IActionResult GetAll()
+    {
+        return Ok(new { users = _userService.GetAllUsers() });
+    }
+
+    [Authorize]
+    [HttpGet("getByUsername")]
+    public IActionResult GetByUsername(string username)
+    {
+        return Ok(new { users = _userService.GetByUsername(username) });
     }
 }
